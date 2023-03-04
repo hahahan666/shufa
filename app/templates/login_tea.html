@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <title>书法自动评价系统</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 36px;
+            color: #333333;
+        }
+
+        .form {
+            margin-top: 20px;
+        }
+
+        .form input {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+
+        .form button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #333333;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form a {
+            display: block;
+            text-align: center;
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .form a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function submitForm() {
+            // 获取表单元素
+            var form = document.getElementById("loginForm");
+            var username = form.elements["username"].value;
+            var password = form.elements["password"].value;
+
+            // 拼接URL参数
+            var params = "?username=" + username + "&password=" + password;
+
+            // 跳转到新的URL
+            window.location.href = "index.html" + params;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">书法自动评价系统</div>
+        <div class="logo">(教师端)</div>
+        <div class="form">
+            <form action="/login_tea" method="POST">
+                <label for="username">用户名:</label>
+                <input type="text" id="username" name="username">
+                <label for="password">密码:</label>
+                <input type="password" id="password" name="password">
+                <button type="submit">登录</button>
+            </form>
+            <form action="/registe_tea_now" method="GET, POST">
+                <button type="submit">立即注册</button>
+            </form>
+            <a href="#" onclick="forget()">忘记密码？</a>
+            <a type="submit" href="/login_stu">学生登录</a>     
+        </div>
+    </div>
+</body>
+
+</html>

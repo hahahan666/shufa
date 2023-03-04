@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件上传</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        form {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        button {
+            background-color: #333;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display:inline-block; 
+			margin-top :10px; 
+			margin-right :10px; 
+			cursor:pointer; 
+			border-radius :5px; 
+			font-size :16px; 
+			font-weight:bold
+        }
+		
+		button:hover{
+		    text-decoration: underline;
+            background-color: #4b4545;
+		}
+
+        input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 2px solid red;
+        }
+
+        a.exit_login {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        }
+
+        .exit_login:hover{
+            text-decoration: underline;
+        }
+        table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #101210;
+  color: white;
+}
+    </style>
+</head>
+<body>
+    <h1>学生界面</h1>
+    <form>
+        <label for="username">用户名:</label>
+        <input class="username" type="text" name="username" value="{{username}}" readonly>
+    </form>
+        <br>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="上传">
+    </form>
+    <form action="/grade_stu" method="GET">
+        <button type="submit">查询成绩</button>
+    </form>
+    <table>
+        <tr>
+            <th>{{name}}</th>
+            <th>{{grade}}</th>
+            <th>{{times}}</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            {% for col in row %}
+            <td>{{ col }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a class="exit_login" href="/exit_login">退出登录</a>
+
+    <script>
+        function takePhoto() {
+             // 在此处添加调用拍照功能的代码
+         }
+
+         function uploadCalligraphy() {
+             // 在此处添加上传书法作品的代码
+         }
+
+         function checkScore() {
+             // 在此处添加查询成绩的代码
+         }
+     </script>
+ </body>
+ </html>

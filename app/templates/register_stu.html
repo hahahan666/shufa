@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>书法自动评价系统</title>
+    <script src="../static/js/sweetalert.min.js"></script>    
+    <link href="../static/css/sweetalert.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .logo {
+            text-align: center;
+            font-size: 36px;
+            color: #333333;
+        }
+        .form {
+            margin-top: 20px;
+        }
+        .form input {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+        .form button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 5px;            
+background-color:#333333 ;            
+color:white;            
+cursor:pointer;            
+}
+.form a {            
+display:block;            
+text-align:center;            
+color:#333333;            
+text-decoration:none;            
+}
+.form a:hover {            
+text-decoration :underline ;            
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">书法自动评价系统</div>
+        <div class="logo">(学生端)</div>
+        <div class="form">
+           <form action="/register_stu" method="POST">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password"> 
+            <label for="password">确认密码:</label>
+            <input type="password" id="password" name="password_again"> 
+            <button type="submit">注册</button>
+        </form> 
+           <form action="/re_login_stu" method="GET, POST">
+            <button type="submit">已有帐号？点击登录</button>
+            </form>
+       </div>
+   </div>
+   <script>
+    $(function () {
+    $('#submit').click(function (event) {
+        //阻止按钮默认的提交表单行为
+        event.preventDefault();
+        var oldpwdE = $('input[name=oldpwd]');
+        var newpwdE = $('input[name=newpwd]');
+        var newpwd2E = $('input[name=newpwd2]');
+
+        var oldpwd = oldpwdE.val();
+        var newpwd = newpwdE.val();
+        var newpwd2 = newpwd2E.val();
+
+        //这里使用我们自己封装好的bbsajax，它具有了csrf
+        bbsajax.post({
+            'url': '/cms/resetpwd/',
+            'data': {
+                'oldpwd': oldpwd,
+                'newpwd': newpwd,
+                'newpwd2': newpwd2
+            },
+            'success': function (data) {
+                //根据状态码判断
+                if (data['code'] === 200){
+                    //弹出成功的提示框，提示语是从后台传过来的message
+                    xtalert.alertSuccessToast(data['message']);
+                    oldpwdE.val('');   //完成请求后把表单输入的值清空
+                    newpwdE.val('');
+                    newpwd2E.val('');
+                }else{
+                    xtalert.alertError(data['message']);
+                    oldpwdE.val('');
+                    newpwdE.val('');
+                    newpwd2E.val('');
+                }
+            },
+            'fail': function (error) {
+                xtalert.alertNetworkError('网络错误');
+            }
+        });
+    });
+})
+   </script>
+</body>
+</html>

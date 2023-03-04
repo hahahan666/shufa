@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件上传</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        form {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        button {
+            background-color: #333;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display:inline-block; 
+			margin-top :10px; 
+			margin-right :10px; 
+			cursor:pointer; 
+			border-radius :5px; 
+			font-size :16px; 
+			font-weight:bold
+        }
+		
+		button:hover{
+		    text-decoration: underline;
+            background-color: #4b4545;
+		}
+
+        input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 2px solid red;
+        }
+
+        a.exit_login {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        }
+
+        .exit_login:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>教师界面</h1>
+        <input class="username" type="text" name="username" value="{{username}}" readonly>
+        <br>
+    <a class="exit_login" href="/exit_login">退出登录</a>
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>成绩</th>
+            <th>提交次数</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            {% for col in row %}
+            <td>{{ col }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        function takePhoto() {
+             // 在此处添加调用拍照功能的代码
+         }
+
+         function uploadCalligraphy() {
+             // 在此处添加上传书法作品的代码
+         }
+
+         function checkScore() {
+             // 在此处添加查询成绩的代码
+         }
+     </script>
+ </body>
+ </html>

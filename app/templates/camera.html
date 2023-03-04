@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>拍照上传</title>
+</head>
+<body>
+    <h1>拍照上传</h1>
+
+    <button onclick="takePhoto()">拍照上传</button>
+
+    <img id="preview" src="" style="display: none;">
+
+    <input id="fileInput" type="file" accept="image/*" capture="camera" style="display: none;" onchange="uploadPhoto(this.files[0])">
+
+    <script>
+        function takePhoto() {
+            document.getElementById('fileInput').click();
+        }
+
+        function uploadPhoto(file) {
+            var preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = 'block';
+
+            var formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => alert(result))
+            .catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
