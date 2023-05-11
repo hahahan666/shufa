@@ -1,0 +1,29 @@
+<!-- edit.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+
+<body>
+
+    <!-- 显示一个标题 -->
+    <h1>修改用户信息</h1>
+
+    <!-- 显示一个表单，用于提交修改后的数据 -->
+    <!-- 设置表单的action属性为当前页面的url，即/edit/<int:id> -->
+    <!-- 设置表单的method属性为POST，表示使用POST请求提交数据 -->
+    <form action="{{ request.path }}" method="post">
+
+        <!-- 显示一个标签，用于提示输入姓名 -->
+        姓名：<input type="text" name="name" value="{{ user[0][0] }}" readonly><br>
+
+        <!-- 显示一个标签，用于提示输入年龄 -->
+        成绩：<input type="text" name="score"><br>
+
+        <!-- 显示一个按钮，用于提交表单数据 -->
+        <input type="submit" value="保存">
+
+    </form>
+
+</body>

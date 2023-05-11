@@ -1,0 +1,54 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Index</title>
+</head>
+<body>
+   <!-- 显示一个标题 -->
+   <h1>用户信息管理</h1>
+   <!-- 显示一个表格 -->
+   <!-- {% if data %}
+   <table class="layui-table">
+       <thead>
+           <tr>
+               <th>姓名</th>
+               <th>成绩</th>
+               <th>提交次数</th>
+               <th>操作</th>
+           </tr> 
+       </thead>
+       {% for row in data %}
+       <tr>
+           {% for col in row %}
+           <td>{{ col }}</td>
+           {% endfor %}
+           <td><a href="/edit/{{ data.name }}">修改</a> | 
+            <a href="/delete/{{ data.name }}">删除</a></td>
+       </tr>
+       {% endfor %}
+   </table>
+   {% endif %} -->
+   <table border="1">
+      <!-- 表格的表头 -->
+      <tr>
+         <th>姓名</th>
+         <th>成绩</th>
+         <th>提交次数</th>
+         <th>操作</th>
+      </tr>
+      <!-- 表格的表体 -->
+      {% for user in data %}
+      <tr>
+         <td>{{ user[1] }}</td>
+         <td>{{ user[2] }}</td>
+         <td>{{ user[3] }}</td>
+         <!-- 为每一行数据添加修改和删除按钮，并设置相应的链接 -->
+         <td><a href="/edit/{{ user[0] }}">修改</a> | 
+             <a href="/delete/{{ user[0] }}">删除</a></td>
+      </tr>
+      {% endfor %}
+   </table>
+
+</body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MySQL搜索</title>
+    <!-- 引入layui框架 -->
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css">
+</head>
+<body>
+    <!-- 设置一个导航栏 -->
+    <div class="layui-header">
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a href="/">首页</a></li>
+            <li class="layui-nav-item"><a href="/about">关于</a></li>
+            <li class="layui-nav-item"><a href="/contact">联系</a></li>
+        </ul>
+    </div>
+
+    <!-- 设置一个搜索表单 -->
+    <div class="layui-container" style="margin-top: 20px;">
+        <form action="/search" method="post" class="layui-form">
+            <div class="layui-form-item">
+                <label for="" class="layui-form-label">请输入姓名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="keyword" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+                <button type="submit" class="layui-btn layui-btn-primary">搜索</button>
+            </div>            
+        </form>
+
+        <!-- 设置一个数据表格 -->
+        {% if data %}
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                </tr> 
+            </thead>
+
+            {% for row in data %}
+            <!-- 遍历数据并显示在表格中 -->
+            {% endfor %}
+        </table>
+
+        {% endif %}
+    </div>
+
+    
+</body>
+
+<!-- 引入jquery库和layuicdn库 -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> 
+<script src="//www.layuicdn.com/layer/layer.js"></script>
